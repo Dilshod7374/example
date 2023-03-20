@@ -1,5 +1,8 @@
 <?php
 /* salom */
+/* salom */
+/* salom */
+/* salom */
 /* hayr */
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
