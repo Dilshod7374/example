@@ -1,5 +1,5 @@
 <?php
-
+/* salom */
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
