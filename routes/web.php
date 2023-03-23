@@ -1,18 +1,5 @@
 <?php
-/* salom */
-/* salom */
-/* salom */
-/* salom */
-/* salom */
-/* salom */
-/* salom */
-/* salom */
-/* salom */
-/* hayr */
-/* hayr */
-/* hayr */
-/* hayr */
-/* hayr */
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
