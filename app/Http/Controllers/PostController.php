@@ -9,9 +9,11 @@ use App\Jobs\UploadBigFile;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Notifications\PostCreated as NotificationsPostCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use PhpParser\Node\Stmt\Return_;
 
@@ -70,7 +72,7 @@ class PostController extends Controller
 
         ChangePost::dispatch($post);
 
-        Mail::to($request->user())->queue((new \App\Mail\PostCreated($post))->onQueue('sending-mails'));
+        Notification::send(auth()->user(), new NotificationsPostCreated($post));
 
         return redirect()->route('posts.index');
     }
