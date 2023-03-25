@@ -11,6 +11,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\Notifications\PostCreated as NotificationsPostCreated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
@@ -27,11 +28,8 @@ class PostController extends Controller
 
     public function index()
     {
-        // $posts = Post::orderBy('id', 'DESC')->paginate(9);;
-        $posts = Post::orderBy('id', 'DESC')->get();
-        $posts = Cache::remember('users', $seconds, function () {
-            return DB::table('users')->get();
-        });
+        $posts = Post::orderBy('id', 'DESC')->paginate(9);;
+        // $posts = Post::latest()->get();
 
         return view('posts.index', compact('posts'));
     }
@@ -50,7 +48,7 @@ class PostController extends Controller
     {
         $requestData = $request->all();
 
-        if ($request->hasFile('photo')) 
+        if ($request->hasFile('photo'))
         {
             $file = $request->file('photo');
             $imageName =$file->getClientOriginalName();
@@ -67,7 +65,7 @@ class PostController extends Controller
             ]);
 
             if(isset($request->tags)){
-            foreach ($request->tags as $tag) 
+            foreach ($request->tags as $tag)
                 {
                     $post->tags()->attach($tag);
                 }
@@ -104,9 +102,9 @@ class PostController extends Controller
 
         $requestData = $request->all();
 
-        if ($request->hasFile('photo')) 
+        if ($request->hasFile('photo'))
         {
-            
+
             $posts = Post::find($id);
 
             if (isset($posts->photo) and file_exists(public_path('/images/'.$posts->photo))) {

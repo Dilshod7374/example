@@ -7,14 +7,18 @@
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
         <div class="navbar-nav mr-auto py-0">
-            <a href="/" class="nav-item nav-link active">Bosh Sahifa</a>
+            <a href="/" class="nav-item nav-link active">{{__('Bosh Sahifa')}}</a>
             <a href="/about" class="nav-item nav-link">Biz haqimizda</a>
             <a href="{{ route('service') }}" class="nav-item nav-link">Xizmatlar</a>
             <a href="/project" class="nav-item nav-link">Portfolio</a>
             <a href=" {{ route('posts.index') }}" class="nav-item nav-link">Blog</a>
             <a href="/contact" class="nav-item nav-link">Aloqa</a>
         </div>
-
+        @foreach ($all_locales as $locale)
+            <a href="{{ route('locale.change', ['locale' => $locale]) }}" class="btn btn-primary mr-3 d-none d-lg-block">
+                {{ $locale }}
+            </a>
+        @endforeach
 
         @auth
             <a href="{{ route('notifications.index') }}" class="btn btn-primary mr-3">

@@ -47,7 +47,7 @@
                     </div>
                 @endforeach
                 <div class="container">
-                    {{-- {{ $posts->links() }}</div> --}}
+                    {{ $posts->links() }}</div>
 
 
             </div>

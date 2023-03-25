@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
@@ -34,6 +35,8 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'register_store'])->name('register.store');
 
 Route::get('notifications/{notifications}/read', [NotificationController::class, 'read'])->name('notifications.read');
+
+Route::get('language/{locale}',[LanguageController::class, 'change_locale'])->name('locale.change');
 
 Route::resources([
     'posts' => PostController::class,
