@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
     public function main(){
+        // session()->put(['key' => 'value']);
+        // dd(session()->all());
         return view('main');
     }
 
